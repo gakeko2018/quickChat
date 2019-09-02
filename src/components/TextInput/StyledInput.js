@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, TextInput } from "react-native";
 import { colors, margin } from "../../styles/base";
+import PropTypes from "prop-types";
 
 const StyledInput = ({ style, placeholder, onChangeText, value }) => {
   return (
@@ -27,5 +28,12 @@ const styles = StyleSheet.create({
     borderStyle: "solid"
   }
 });
+
+StyledInput.propTypes = {
+  value: PropTypes.string,
+  placeholder: PropTypes.string,
+  style: PropTypes.object,
+  onChangeText: PropTypes.func
+};
 
 export default StyledInput;

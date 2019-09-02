@@ -4,7 +4,7 @@ import {
   Text,
   View,
   ScrollView,
-  KeyboardAvoidingView,
+  KeyboardAvoidingView
 } from "react-native";
 
 import {
@@ -14,6 +14,8 @@ import {
   setUsername
 } from "../redux/actionCreators";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
 import { colors, padding, margin } from "../styles/base";
 import ArrowButton from "../components/Button/ArrowButton";
 import StyledButton from "../components/Button/StyledButton";
@@ -166,6 +168,17 @@ const styles = StyleSheet.create({
     minWidth: "30%"
   }
 });
+
+ChatWindow.propTypes = {
+  username: PropTypes.string,
+  messageList: PropTypes.array,
+  auth: PropTypes.object,
+  chat: PropTypes.object,
+  getMessages: PropTypes.func,
+  sendMessage: PropTypes.func,
+  logMessage: PropTypes.func,
+  setUsername: PropTypes.func
+};
 
 const mapDispatchToProps = dispatch => {
   return {

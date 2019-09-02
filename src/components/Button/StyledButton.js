@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { colors, margin } from "../../styles/base";
+import PropTypes from "prop-types";
 
 const StyledButton = ({ text, style, onPress }) => {
   return (
@@ -24,5 +25,11 @@ const styles = StyleSheet.create({
     color: colors.primaryFontColor
   }
 });
+
+StyledButton.propTypes = {
+  text: PropTypes.string,
+  style: PropTypes.object,
+  onPress: PropTypes.func
+};
 
 export default StyledButton;

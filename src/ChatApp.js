@@ -3,6 +3,7 @@ import { StyleSheet, View } from "react-native";
 import Login from "./containers/Login";
 import ChatWindow from "./containers/ChatWindow";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 class ChatApp extends Component {
   constructor(props) {
@@ -30,6 +31,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5FCFF"
   }
 });
+
+ChatApp.propTypes = {
+  username: PropTypes.string
+};
 
 const mapStateToProps = state => {
   const {

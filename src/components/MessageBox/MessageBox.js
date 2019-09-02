@@ -1,23 +1,16 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image
-} from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import { colors, margin, padding } from "../../styles/base";
+import PropTypes from "prop-types";
 
-const MessageBox = ({ key, username, message }) => {
+const MessageBox = ({ username, message }) => {
   const {
     id,
     text,
     user: { avatarUrl, name }
   } = message;
   return (
-    <View
-      key={key}
-      style={username === name ? styles.userChatBox : styles.chatBox}
-    >
+    <View style={username === name ? styles.userChatBox : styles.chatBox}>
       <View style={styles.avatarBox}>
         <Image source={{ uri: avatarUrl }} style={styles.avatarImage} />
       </View>
@@ -76,5 +69,10 @@ const styles = StyleSheet.create({
     overflow: "hidden"
   }
 });
+
+MessageBox.propTypes = {
+  username: PropTypes.string,
+  message: PropTypes.object
+};
 
 export default MessageBox;

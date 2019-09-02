@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { colors } from "../styles/base";
 import StyledButton from "../components/Button/StyledButton";
 import StyledInput from "../components/TextInput/StyledInput";
+import PropTypes from "prop-types";
 
 class Login extends Component {
   constructor(props) {
@@ -76,6 +77,11 @@ const styles = StyleSheet.create({
     fontSize: 10
   }
 });
+
+Login.propTypes = {
+  username: PropTypes.string,
+  setUsername: PropTypes.func,
+};
 
 const mapDispatchToProps = dispatch => {
   return {

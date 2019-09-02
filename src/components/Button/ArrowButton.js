@@ -1,11 +1,7 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { colors, margin } from "../../styles/base";
+import PropTypes from "prop-types";
 
 const ArrowButton = ({ text, style, onPress }) => {
   return (
@@ -52,5 +48,11 @@ const styles = StyleSheet.create({
     fontSize: 20
   }
 });
+
+ArrowButton.propTypes = {
+  text: PropTypes.string,
+  style: PropTypes.object,
+  onPress: PropTypes.func
+};
 
 export default ArrowButton;
