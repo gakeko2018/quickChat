@@ -1,12 +1,13 @@
 import * as ActionTypes from "./actionTypes";
+import Immutable from "seamless-immutable";
 
-const initialAuthState = {
+const initialAuthState = Immutable({
   username: ""
-};
+});
 
-const initialChatState = {
+const initialChatState = Immutable({
   messageList: []
-};
+});
 
 export const authReducer = (state = initialAuthState, action) => {
   switch (action.type) {
