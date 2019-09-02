@@ -1,6 +1,7 @@
 import { put, takeLatest } from "redux-saga/effects";
 import * as ActionTypes from "./actionTypes";
 import axios from "axios";
+import { db } from "../config/firebase.config";
 
 export function* getChatMessages(data) {
   try {
@@ -15,7 +16,21 @@ export function* getChatMessages(data) {
     yield put({ type: ActionTypes.GET_MESSAGES_FAILED, error });
   }
 }
+export function* logMessages(data) {
+  try {
+    db.ref().push({
+      data
+    });
+
+    yield put({
+      type: ActionTypes.FIREBASE_LOG_MESSAGE_SUCCESS
+    });
+  } catch (error) {
+    yield put({ type: ActionTypes.FIREBASE_LOG_MESSAGE_FAILED, error });
+  }
+}
 
 export function* watchActions() {
   yield takeLatest(ActionTypes.GET_MESSAGES, getChatMessages);
+  yield takeLatest(ActionTypes.FIREBASE_LOG_MESSAGE, logMessages);
 }

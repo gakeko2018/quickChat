@@ -13,7 +13,12 @@ import {
   ListView
 } from "react-native";
 
-import { getMessages, sendMessage, setUsername } from "./redux/actionCreators";
+import {
+  getMessages,
+  sendMessage,
+  logMessage,
+  setUsername
+} from "./redux/actionCreators";
 import { connect } from "react-redux";
 import { colors, padding, margin } from "./styles/base";
 class ChatWindow extends Component {
@@ -34,7 +39,7 @@ class ChatWindow extends Component {
   handleButtonPress = () => {
     const {
       state: { newMessageText },
-      props: { sendMessage, messageList, username }
+      props: { sendMessage, logMessage, messageList, username }
     } = this;
     const message = {
       id: messageList.length,
@@ -48,6 +53,7 @@ class ChatWindow extends Component {
     };
     if (newMessageText) {
       sendMessage(message);
+      logMessage(message);
       this.setState({ newMessageText: "" });
     }
   };
@@ -293,6 +299,9 @@ const mapDispatchToProps = dispatch => {
     },
     sendMessage: payload => {
       dispatch(sendMessage(payload));
+    },
+    logMessage: payload => {
+      dispatch(logMessage(payload));
     },
     setUsername: payload => {
       dispatch(setUsername(payload));

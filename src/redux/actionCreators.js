@@ -20,17 +20,22 @@ export const getMessagesFailed = error => ({
   payload: error
 });
 
-export const sendMessage = (message) => ({
+export const sendMessage = message => ({
   type: ActionTypes.SEND_MESSAGE,
   payload: message
 });
 
-export const sendMessageSuccess = messageList => ({
-  type: ActionTypes.SEND_MESSAGE_SUCCESS,
-  payload: messageList
+export const logMessage = message => ({
+  type: ActionTypes.FIREBASE_LOG_MESSAGE,
+  payload: message
 });
 
-export const sendMessageFailed = error => ({
-  type: ActionTypes.SEND_MESSAGE_FAILED,
+export const logMessageSuccess = message => ({
+  type: ActionTypes.FIREBASE_LOG_MESSAGE_SUCCESS,
+  payload: message
+});
+
+export const logMessageFailed = error => ({
+  type: ActionTypes.FIREBASE_LOG_MESSAGE_FAILED,
   payload: error
 });
