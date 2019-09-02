@@ -1,14 +1,7 @@
 import React, { Component } from "react";
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput
-} from "react-native";
-import Login from "./Login";
-import ChatWindow from "./ChatWindow";
+import { StyleSheet, View } from "react-native";
+import Login from "./containers/Login";
+import ChatWindow from "./containers/ChatWindow";
 import { connect } from "react-redux";
 
 class ChatApp extends Component {
@@ -35,29 +28,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#F5FCFF"
-  },
-  textInput: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10,
-    borderWidth: 1,
-    borderColor: "skyblue",
-    borderRadius: 10,
-    borderStyle: "solid",
-    minWidth: "80%"
-  },
-  button: {
-    textAlign: "center",
-    color: "purple",
-    marginBottom: 5,
-    minWidth: "80%",
-    borderWidth: 1,
-    borderColor: "red",
-    borderStyle: "solid"
-  },
-  error: {
-    color: "red",
-    fontSize: 10
   }
 });
 

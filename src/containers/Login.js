@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import {
-  Platform,
   StyleSheet,
   Text,
-  View,
-  Button,
   TextInput,
   KeyboardAvoidingView,
   TouchableOpacity
 } from "react-native";
-import { setUsername } from "./redux/actionCreators";
+import { setUsername } from "../redux/actionCreators";
 import { connect } from "react-redux";
-import { colors, margin } from "./styles/base";
+import { colors } from "../styles/base";
+import StyledButton from "../components/Button/StyledButton";
+import StyledInput from "../components/TextInput/StyledInput";
 
 class Login extends Component {
   constructor(props) {
@@ -24,7 +23,7 @@ class Login extends Component {
 
   handleButtonPress = () => {
     const {
-      state: { displayError, nickname },
+      state: { nickname },
       props: { setUsername }
     } = this;
 
@@ -42,27 +41,24 @@ class Login extends Component {
 
   render() {
     const {
-      state: { displayError, nickname },
-      props: { username }
+      state: { displayError, nickname }
     } = this;
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
-        <TextInput
+        <StyledInput
           style={styles.textInput}
           placeholder="Nickname"
           onChangeText={this.handleChangeText}
           value={nickname}
         />
         <Text style={[styles.error, { display: displayError }]}>
-          {" "}
           Nickname must be longer than 2 characters!
         </Text>
-        <TouchableOpacity
+        <StyledButton
           style={styles.loginButton}
+          text="Continue"
           onPress={this.handleButtonPress}
-        >
-          <Text style={styles.loginButtonText}> Continue </Text>
-        </TouchableOpacity>
+        />
       </KeyboardAvoidingView>
     );
   }
@@ -76,29 +72,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primaryBackground
   },
   textInput: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: margin.sm,
-    borderWidth: 1,
-    borderColor: colors.secondaryFontColor,
-    backgroundColor: colors.primaryBackground,
-    color: colors.secondaryFontColor,
-    borderRadius: 10,
-    borderStyle: "solid",
     minWidth: "80%"
   },
   loginButton: {
-    justifyContent: "center",
-    alignItems: "center",
-    margin: margin.sm,
-    backgroundColor: colors.tertiaryBackground,
-    borderRadius: 10,
-    minWidth: "80%",
-    minHeight: 30
-  },
-  loginButtonText: {
-    fontSize: 20,
-    color: colors.primaryFontColor
+    minWidth: "80%"
   },
   error: {
     color: "red",

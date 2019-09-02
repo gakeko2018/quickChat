@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Buttons renders correctly  ArrowButton renders correctly 1`] = `ShallowWrapper {}`;
+
+exports[`Buttons renders correctly  StyledButton renders correctly 1`] = `ShallowWrapper {}`;

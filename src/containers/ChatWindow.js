@@ -18,9 +18,14 @@ import {
   sendMessage,
   logMessage,
   setUsername
-} from "./redux/actionCreators";
+} from "../redux/actionCreators";
 import { connect } from "react-redux";
-import { colors, padding, margin } from "./styles/base";
+import { colors, padding, margin } from "../styles/base";
+import ArrowButton from "../components/Button/ArrowButton";
+import StyledButton from "../components/Button/StyledButton";
+import StyledInput from "../components/TextInput/StyledInput";
+import MessageBox from "../components/MessageBox/MessageBox";
+
 class ChatWindow extends Component {
   constructor(props) {
     super(props);
@@ -69,36 +74,6 @@ class ChatWindow extends Component {
     this.setState({ newMessageText });
   };
 
-  renderChatBox = message => {
-    const {
-      props: { username }
-    } = this;
-    const {
-      id,
-      text,
-      user: { avatarUrl, name }
-    } = message;
-    return (
-      <View
-        key={id}
-        style={username === name ? styles.userChatBox : styles.chatBox}
-      >
-        <View style={styles.avatarBox}>
-          <Image source={{ uri: avatarUrl }} style={styles.avatarImage} />
-        </View>
-        <Text
-          style={
-            username === name
-              ? styles.userMessageBodyText
-              : styles.messageBodyText
-          }
-        >
-          {text}
-        </Text>
-      </View>
-    );
-  };
-
   render() {
     const {
       state: { newMessageText },
@@ -107,19 +82,11 @@ class ChatWindow extends Component {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <View style={styles.header}>
-          <View style={styles.leaveButton}>
-            <View style={styles.leaveButtonLeft} />
-            <View style={styles.leaveButtonRight}>
-              <TouchableOpacity onPress={this.handleLeavePress}>
-                <Text style={styles.leaveButtonText}> Leave </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+          <ArrowButton text="Leave" onPress={this.handleLeavePress} />
           <Text style={styles.welcomeText}>Welcome {username}</Text>
         </View>
         <View style={styles.content}>
           <ScrollView
-            style={styles.scroll}
             ref="scrollView"
             onContentSizeChange={(width, height) =>
               this.refs.scrollView.scrollTo({ y: height })
@@ -129,12 +96,15 @@ class ChatWindow extends Component {
               this.refs.scrollView.scrollTo({ y: height });
             }}
           >
-            {messageList && messageList.map(item => this.renderChatBox(item))}
+            {messageList &&
+              messageList.map(item => (
+                <MessageBox key={item.id} username={username} message={item} />
+              ))}
           </ScrollView>
         </View>
         <View style={styles.footer}>
           <View style={styles.footerInput}>
-            <TextInput
+            <StyledInput
               style={styles.textInput}
               placeholder="Message"
               onChangeText={this.handleChangeText}
@@ -142,12 +112,11 @@ class ChatWindow extends Component {
             />
           </View>
           <View style={styles.footerInput}>
-            <TouchableOpacity
+            <StyledButton
               style={styles.sendButton}
+              text="Send"
               onPress={this.handleButtonPress}
-            >
-              <Text style={styles.sendButtonText}> Send </Text>
-            </TouchableOpacity>
+            />
           </View>
         </View>
       </KeyboardAvoidingView>
@@ -174,36 +143,6 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10
   },
-  leaveButton: {
-    flexDirection: "row"
-  },
-  leaveButtonLeft: {
-    borderRightWidth: 10,
-    borderRightColor: colors.tertiaryBackground,
-    borderTopWidth: 15,
-    borderTopColor: "transparent",
-    borderBottomWidth: 15,
-    borderBottomColor: "transparent",
-    height: 0,
-    width: 0,
-    left: -10,
-    top: 0,
-    position: "absolute"
-  },
-  leaveButtonRight: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: colors.tertiaryBackground,
-    height: 30,
-    width: 100,
-    borderWidth: 1,
-    borderColor: colors.tertiaryBackground,
-    borderStyle: "solid"
-  },
-  leaveButtonText: {
-    color: colors.primaryFontColor,
-    fontSize: 20
-  },
   welcomeText: {
     marginLeft: margin.sm,
     color: colors.secondaryFontColor,
@@ -218,47 +157,6 @@ const styles = StyleSheet.create({
     borderColor: colors.secondaryBackground,
     borderStyle: "solid"
   },
-  scroll: {},
-  userChatBox: {
-    minWidth: "100%",
-    flexDirection: "row-reverse",
-    marginBottom: margin.md
-  },
-  chatBox: {
-    minWidth: "100%",
-    flexDirection: "row",
-    marginBottom: margin.md
-  },
-  avatarBox: {
-    height: 40,
-    width: 40
-  },
-  avatarImage: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    borderRadius: 20
-  },
-  messageBodyText: {
-    backgroundColor: colors.tertiaryBackground,
-    borderRadius: 10,
-    margin: margin.sm,
-    padding: padding.sm,
-    maxWidth: "60%",
-    overflow: "hidden",
-    color: colors.primaryFontColor
-  },
-  userMessageBodyText: {
-    backgroundColor: colors.secondaryFontColor,
-    color: colors.primaryFontColor,
-    borderRadius: 10,
-    margin: margin.sm,
-    padding: padding.sm,
-    maxWidth: "60%",
-    overflow: "hidden"
-  },
   footer: {
     height: 50,
     flexDirection: "row",
@@ -268,27 +166,10 @@ const styles = StyleSheet.create({
     minWidth: "100%"
   },
   textInput: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: margin.sm,
-    borderRadius: 10,
-    minWidth: "60%",
-    backgroundColor: colors.primaryBackground,
-    color: colors.secondaryFontColor,
-    minHeight: 30
+    minWidth: "60%"
   },
   sendButton: {
-    justifyContent: "center",
-    alignItems: "center",
-    margin: margin.sm,
-    backgroundColor: colors.tertiaryBackground,
-    borderRadius: 10,
-    minWidth: "30%",
-    minHeight: 30
-  },
-  sendButtonText: {
-    fontSize: 20,
-    color: colors.primaryFontColor
+    minWidth: "30%"
   }
 });
 

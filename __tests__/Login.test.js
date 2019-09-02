@@ -5,7 +5,7 @@ import { shallow } from "enzyme";
 import Enzyme from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import Login from "../src/Login";
+import Login from "../src/containers/Login";
 
 Enzyme.configure({ adapter: new Adapter() });
 

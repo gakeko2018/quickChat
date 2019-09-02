@@ -5,7 +5,7 @@ import { shallow } from "enzyme";
 import Enzyme from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import ChatWindow from "../src/ChatWindow";
+import ChatWindow from "../src/containers/ChatWindow";
 
 Enzyme.configure({ adapter: new Adapter() });
 
