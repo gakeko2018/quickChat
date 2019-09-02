@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  KeyboardAvoidingView,
-  TouchableOpacity
-} from "react-native";
+import { StyleSheet, TextInput } from "react-native";
 import { colors, margin } from "../../styles/base";
 
 const StyledInput = ({ style, placeholder, onChangeText, value }) => {

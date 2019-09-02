@@ -22,6 +22,8 @@ export const authReducer = (state = initialAuthState, action) => {
 };
 
 export const chatReducer = (state = initialChatState, action) => {
+  const newList = state.messageList;
+
   switch (action.type) {
     case ActionTypes.GET_MESSAGES:
       return {
@@ -42,7 +44,6 @@ export const chatReducer = (state = initialChatState, action) => {
       return { ...state, isLoading: false, errMess: action.payload };
 
     case ActionTypes.SEND_MESSAGE:
-      const newList = state.messageList;
       newList.push(action.payload);
       return {
         ...state,

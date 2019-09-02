@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import ChatApp from "./src/ChatApp";
 import { Provider } from "react-redux";
 import { configureStore } from "./src/config/store.config";

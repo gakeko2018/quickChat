@@ -1,11 +1,5 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  KeyboardAvoidingView,
-  TouchableOpacity
-} from "react-native";
+import { StyleSheet, Text, KeyboardAvoidingView } from "react-native";
 import { setUsername } from "../redux/actionCreators";
 import { connect } from "react-redux";
 import { colors } from "../styles/base";

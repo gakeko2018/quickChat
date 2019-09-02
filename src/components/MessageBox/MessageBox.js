@@ -2,9 +2,6 @@ import React from "react";
 import {
   StyleSheet,
   Text,
-  TextInput,
-  KeyboardAvoidingView,
-  TouchableOpacity,
   View,
   Image
 } from "react-native";
